@@ -28,7 +28,7 @@ trait HasPages
     {
         $this->page($this->page + 1);
 
-        return $this->requestData();
+        return $this;
     }
 
     public function getAll(): Collection
@@ -37,13 +37,11 @@ trait HasPages
         $result = $this->get();
 
         do {
-            $this->nextPage();
-
             /** @var Collection */
-            $page = $this->get();
+            $page = $this->nextPage()->get();
 
-            $result->concat($page);
-        } while (false == $page->empty());
+            $result->push($page);
+        } while ($page->isNotEmpty() && $page->count() == $this->pageSize);
 
         return $result;
     }
