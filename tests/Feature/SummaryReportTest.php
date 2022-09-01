@@ -3,7 +3,7 @@
 namespace Sourceboat\LaravelClockifyApi\Tests\Feature;
 
 use Illuminate\Support\Facades\Http;
-use Sourceboat\LaravelClockifyApi\Repositories\ClockifyRepository;
+use Sourceboat\LaravelClockifyApi\Reports\ClockifySummaryReport;
 use Sourceboat\LaravelClockifyApi\Tests\TestCase;
 
 class SummaryReportTest extends TestCase
@@ -14,7 +14,7 @@ class SummaryReportTest extends TestCase
     {
         Http::fake();
 
-        ClockifyRepository::makeSummaryReport()
+        app(ClockifySummaryReport::class)
             ->users($this->userIds)
             ->get();
 
