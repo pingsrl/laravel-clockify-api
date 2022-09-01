@@ -2,6 +2,7 @@
 
 namespace Ping\LaravelClockifyApi\Reports;
 
+use Illuminate\Support\Collection;
 use Ping\LaravelClockifyApi\ClockifyClient;
 use Ping\LaravelClockifyApi\Reports\Traits\HasTags;
 use Ping\LaravelClockifyApi\Reports\Traits\HasTimes;
@@ -31,6 +32,11 @@ abstract class ClockifyReport extends ClockifyClient
         parent::__construct();
         $this->dateRangeStart = now()->startOfYear();
         $this->dateRangeEnd = now()->endOfYear();
+    }
+
+    public function get(): Collection
+    {
+        return collect(json_decode($this->executeApiCall()->body()));
     }
 
     public function users(array $userIds)

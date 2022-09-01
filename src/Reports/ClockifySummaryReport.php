@@ -12,11 +12,6 @@ class ClockifySummaryReport extends ClockifyReport
         'TIMEENTRY',
     ];
 
-    public function get()
-    {
-        return json_decode($this->executeApiCall()->body());
-    }
-
     protected function requestData()
     {
         return $this->filter((array) [

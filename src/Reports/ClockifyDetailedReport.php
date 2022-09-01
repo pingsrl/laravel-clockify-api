@@ -10,11 +10,6 @@ class ClockifyDetailedReport extends ClockifyReport
 
     private int $pageSize = 50;
 
-    public function get()
-    {
-        return json_decode($this->executeApiCall()->body());
-    }
-
     public function page(int $page)
     {
         $this->page = $page;
