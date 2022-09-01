@@ -1,58 +1,64 @@
 {
-    "name": "sourceboat/laravel-clockify-api",
-    "description": "",
-    "keywords": [
-        "sourceboat",
-        "laravel",
-        "clockify",
-        "api",
-        "reports"
-    ],
-    "homepage": "https://github.com/sourceboat/laravel-clockify-api",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Sebastian Müller",
-            "email": "sebastian@sourceboat.com",
-            "homepage": "https://sourceboat.com"
-        }
-    ],
-    "require": {
-        "php": ">=7.4",
-        "laravel/framework": "^6.0|^7.0|^8.0",
-        "guzzlehttp/guzzle": "^7.2"
-      },
-      "require-dev": {
-        "phpunit/phpunit": "^9.3",
-        "phpmd/phpmd": "^2.6",
-        "consistence/coding-standard": "^3.10",
-        "slevomat/coding-standard": "^6.4",
-        "orchestra/testbench": "^6.2"
+  "name": "pingsrl/laravel-clockify-api",
+  "description": "",
+  "keywords": [
+    "pingsrl",
+    "laravel",
+    "clockify",
+    "api",
+    "reports"
+  ],
+  "homepage": "https://github.com/pingsrl/laravel-clockify-api",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Sebastian Müller",
+      "email": "sebastian@sourceboat.com",
+      "homepage": "https://sourceboat.com"
     },
-    "autoload": {
-        "psr-4": {
-            "Sourceboat\\LaravelClockifyApi\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Sourceboat\\LaravelClockifyApi\\Tests\\": "tests"
-        }
-    },
-    "scripts": {
-        "test": "vendor/bin/phpunit",
-        "lint:phpcs": "vendor/bin/phpcs -s",
-        "lint:phpmd": "vendor/bin/phpmd config,src,tests text phpmd.xml",
-        "fix": "vendor/bin/phpcbf"
-    },
-    "config": {
-        "sort-packages": true
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Sourceboat\\LaravelClockifyApi\\LaravelClockifyApiServiceProvider"
-            ]
-        }
+    {
+      "name": "Ping srl",
+      "email": "info@pingsrl.it",
+      "homepage": "https://pingsrl.it"
     }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "laravel/framework": "^6.0|^7.0|^8.0|^9.0",
+    "guzzlehttp/guzzle": "^7.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.3",
+    "phpmd/phpmd": "^2.6",
+    "orchestra/testbench": "^7.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "Sourceboat\\LaravelClockifyApi\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Sourceboat\\LaravelClockifyApi\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit",
+    "lint:phpcs": "vendor/bin/phpcs -s",
+    "lint:phpmd": "vendor/bin/phpmd config,src,tests text phpmd.xml",
+    "fix": "vendor/bin/phpcbf"
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": false
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Sourceboat\\LaravelClockifyApi\\LaravelClockifyApiServiceProvider"
+      ]
+    }
+  }
 }

@@ -4,7 +4,6 @@ namespace Sourceboat\LaravelClockifyApi\Reports\Traits;
 
 trait HasTags
 {
-
     protected $tagIds = null;
 
     protected $tagsContainedInTimeentry = 'CONTAINS';
@@ -13,6 +12,7 @@ trait HasTags
     {
         $this->tagIds = $tagIds;
         $this->tagsContainedInTimeentry = 'CONTAINS';
+
         return $this;
     }
 
@@ -20,6 +20,7 @@ trait HasTags
     {
         $this->tagIds = $tagIds;
         $this->tagsContainedInTimeentry = 'CONTAINS_ONLY';
+
         return $this;
     }
 
@@ -27,7 +28,7 @@ trait HasTags
     {
         $this->tagIds = $tagIds;
         $this->tagsContainedInTimeentry = 'DOES_NOT_CONTAIN';
+
         return $this;
     }
-
 }

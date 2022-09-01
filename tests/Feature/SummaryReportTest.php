@@ -8,7 +8,6 @@ use Sourceboat\LaravelClockifyApi\Tests\TestCase;
 
 class SummaryReportTest extends TestCase
 {
-
     private array $userIds = [1, 2, 3];
 
     public function test(): void
@@ -23,5 +22,4 @@ class SummaryReportTest extends TestCase
             return count($request['users']['ids']) === count($this->userIds);
         });
     }
-
 }

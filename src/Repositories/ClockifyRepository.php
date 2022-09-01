@@ -7,7 +7,6 @@ use Sourceboat\LaravelClockifyApi\Reports\ClockifySummaryReport;
 
 class ClockifyRepository
 {
-
     public static function makeSummaryReport()
     {
         return ClockifySummaryReport::make();
@@ -17,5 +16,4 @@ class ClockifyRepository
     {
         return ClockifyDetailedReport::make();
     }
-
 }

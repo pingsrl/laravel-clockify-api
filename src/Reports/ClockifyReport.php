@@ -9,7 +9,6 @@ use Sourceboat\LaravelClockifyApi\Reports\Traits\HasTimes;
 
 abstract class ClockifyReport
 {
-
     use ConditionallyLoadsAttributes;
     use HasTags;
     use HasTimes;
@@ -49,15 +48,15 @@ abstract class ClockifyReport
 
     public static function make()
     {
-        return new static;
+        return new static();
     }
 
     public function executeApiCall()
     {
-        $endpoint = '/workspaces/' . $this->workspaceId . '/reports' . $this->reportEndpoint;
+        $endpoint = '/workspaces/'.$this->workspaceId.'/reports'.$this->reportEndpoint;
 
         return Http::withHeaders($this->headers)->post(
-            self::REPORTS_ENDPOINT . $endpoint,
+            self::REPORTS_ENDPOINT.$endpoint,
             $this->requestData(),
         );
     }
@@ -65,19 +64,21 @@ abstract class ClockifyReport
     public function users(array $userIds)
     {
         $this->userIds = $userIds;
+
         return $this;
     }
 
     public function tasks(array $taskIds)
     {
         $this->taskIds = $taskIds;
+
         return $this;
     }
 
     public function sortOrder(string $sortOrder)
     {
         $this->sortOrder = $sortOrder;
+
         return $this;
     }
-
 }

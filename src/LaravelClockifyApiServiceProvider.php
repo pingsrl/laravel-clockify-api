@@ -6,14 +6,13 @@ use Illuminate\Support\ServiceProvider;
 
 class LaravelClockifyApiServiceProvider extends ServiceProvider
 {
-
     /**
      * Bootstrap the application services.
      */
     public function boot(): void
     {
         $this->publishes([
-            __DIR__ . '/../config/clockify.php' => config_path('clockify.php'),
+            __DIR__.'/../config/clockify.php' => config_path('clockify.php'),
         ], 'clockify-config');
     }
 
@@ -22,7 +21,6 @@ class LaravelClockifyApiServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/clockify.php', 'clockify');
+        $this->mergeConfigFrom(__DIR__.'/../config/clockify.php', 'clockify');
     }
-
 }

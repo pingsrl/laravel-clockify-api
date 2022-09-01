@@ -7,7 +7,6 @@ use Orchestra\Testbench\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
 {
-
     public function setUp(): void
     {
         parent::setUp();
@@ -15,5 +14,4 @@ class TestCase extends BaseTestCase
         Config::set('clockify.api_key', '');
         Config::set('clockify.workspace_id', '');
     }
-
 }

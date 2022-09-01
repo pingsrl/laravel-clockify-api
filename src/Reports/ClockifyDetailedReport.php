@@ -4,7 +4,6 @@ namespace Sourceboat\LaravelClockifyApi\Reports;
 
 class ClockifyDetailedReport extends ClockifyReport
 {
-
     protected string $reportEndpoint = '/detailed';
 
     private int $page = 1;
@@ -19,12 +18,14 @@ class ClockifyDetailedReport extends ClockifyReport
     public function page(int $page)
     {
         $this->page = $page;
+
         return $this;
     }
 
     public function pageSize(int $pageSize)
     {
         $this->pageSize = $pageSize;
+
         return $this;
     }
 
@@ -38,7 +39,7 @@ class ClockifyDetailedReport extends ClockifyReport
                 'pageSize' => $this->pageSize,
                 'sortColumn' => 'DATE',
             ],
-            $this->mergeWhen($this->sortOrder !== '', [
+            $this->mergeWhen('' !== $this->sortOrder, [
                 'sortOrder' => $this->sortOrder,
             ]),
             $this->mergeWhen(!is_null($this->userIds), [
@@ -66,7 +67,6 @@ class ClockifyDetailedReport extends ClockifyReport
 
     public static function make()
     {
-        return new static;
+        return new static();
     }
-
 }

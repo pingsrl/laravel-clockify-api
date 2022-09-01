@@ -4,7 +4,6 @@ namespace Sourceboat\LaravelClockifyApi\Reports;
 
 class ClockifySummaryReport extends ClockifyReport
 {
-
     protected string $reportEndpoint = '/summary';
 
     private array $filterGroups = [
@@ -26,7 +25,7 @@ class ClockifySummaryReport extends ClockifyReport
             'summaryFilter' => [
                 'groups' => $this->filterGroups,
             ],
-            $this->mergeWhen($this->sortOrder !== '', [
+            $this->mergeWhen('' !== $this->sortOrder, [
                 'sortOrder' => $this->sortOrder,
             ]),
             $this->mergeWhen(!is_null($this->userIds), [
@@ -55,12 +54,12 @@ class ClockifySummaryReport extends ClockifyReport
     public function filterGroups(array $filterGroups)
     {
         $this->filterGroups = $filterGroups;
+
         return $this;
     }
 
     public static function make()
     {
-        return new static;
+        return new static();
     }
-
 }
