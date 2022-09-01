@@ -40,7 +40,7 @@ trait HasPages
             /** @var Collection */
             $page = $this->nextPage()->get();
 
-            $result->push($page);
+            $result->push(...$page);
         } while ($page->isNotEmpty() && $page->count() == $this->pageSize);
 
         return $result;
