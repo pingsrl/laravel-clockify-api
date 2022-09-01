@@ -3,8 +3,8 @@
 namespace Ping\LaravelClockifyApi\Reports;
 
 use Ping\LaravelClockifyApi\ClockifyClient;
-use Ping\LaravelClockifyApi\Reports\Traits\HasTags;
-use Ping\LaravelClockifyApi\Reports\Traits\HasTimes;
+use Ping\LaravelClockifyApi\Traits\HasTags;
+use Ping\LaravelClockifyApi\Traits\HasTimes;
 
 abstract class ClockifyReport extends ClockifyClient
 {

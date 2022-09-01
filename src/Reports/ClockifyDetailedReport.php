@@ -6,24 +6,6 @@ class ClockifyDetailedReport extends ClockifyReport
 {
     protected string $endpoint = '/reports/detailed';
 
-    private int $page = 1;
-
-    private int $pageSize = 50;
-
-    public function page(int $page)
-    {
-        $this->page = $page;
-
-        return $this;
-    }
-
-    public function pageSize(int $pageSize)
-    {
-        $this->pageSize = $pageSize;
-
-        return $this;
-    }
-
     protected function requestData()
     {
         return $this->filter((array) [

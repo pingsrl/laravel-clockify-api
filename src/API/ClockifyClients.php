@@ -6,10 +6,6 @@ class ClockifyClients extends ClockifyAPI
 {
     protected string $endpoint = '/clients';
 
-    private int $page = 1;
-
-    private int $pageSize = 50;
-
     private bool $archived = false;
 
     private string $name = '';

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ping\LaravelClockifyApi\Reports\Traits;
+namespace Ping\LaravelClockifyApi\Traits;
 
 trait HasTags
 {

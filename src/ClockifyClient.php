@@ -33,7 +33,7 @@ abstract class ClockifyClient
         return collect(json_decode($this->executeApiCall()->body()));
     }
 
-    public function executeApiCall()
+    private function executeApiCall()
     {
         $endpoint = '/workspaces/'.$this->workspaceId.$this->endpoint;
         $method = $this->method ?? 'get';

@@ -6,10 +6,6 @@ class ClockifyUsers extends ClockifyAPI
 {
     protected string $endpoint = '/users';
 
-    private int $page = 1;
-
-    private int $pageSize = 50;
-
     private string $status = 'ACTIVE';
 
     protected function requestData()

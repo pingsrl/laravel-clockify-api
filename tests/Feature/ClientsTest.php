@@ -26,4 +26,22 @@ class ClientsTest extends TestCase
             return true;
         });
     }
+
+    public function testCanLoadMultiplePages(): void
+    {
+        Http::fake();
+
+        app(ClockifyClients::class)
+            ->byName('test')
+            ->getAll();
+
+        Http::assertSent(function (Request $request) {
+            $this->assertStringContainsString('https://api.clockify.me/api/v1/workspaces/'.config('clockify.workspace_id').'/clients', $request->url());
+            $this->assertEquals('NAME', $request['sortColumn']);
+            $this->assertEquals('test', $request['name']);
+            $this->assertEquals('GET', $request->method());
+
+            return true;
+        });
+    }
 }

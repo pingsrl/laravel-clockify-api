@@ -6,10 +6,6 @@ class ClockifyProjects extends ClockifyAPI
 {
     protected string $endpoint = '/projects';
 
-    private int $page = 1;
-
-    private int $pageSize = 50;
-
     private string $clientStatus = 'ACTIVE';
 
     private string $userStatus = 'ACTIVE';
