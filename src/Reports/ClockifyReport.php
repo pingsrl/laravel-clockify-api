@@ -1,35 +1,25 @@
 <?php
 
-namespace Sourceboat\LaravelClockifyApi\Reports;
+namespace Ping\LaravelClockifyApi\Reports;
 
-use Illuminate\Http\Resources\ConditionallyLoadsAttributes;
-use Illuminate\Support\Facades\Http;
-use Sourceboat\LaravelClockifyApi\Reports\Traits\HasTags;
-use Sourceboat\LaravelClockifyApi\Reports\Traits\HasTimes;
+use Ping\LaravelClockifyApi\ClockifyClient;
+use Ping\LaravelClockifyApi\Reports\Traits\HasTags;
+use Ping\LaravelClockifyApi\Reports\Traits\HasTimes;
 
-abstract class ClockifyReport
+abstract class ClockifyReport extends ClockifyClient
 {
-    use ConditionallyLoadsAttributes;
     use HasTags;
     use HasTimes;
 
-    private const REPORTS_ENDPOINT = 'https://reports.api.clockify.me/v1';
+    private const ENDPOINT = 'https://reports.api.clockify.me/v1';
 
     protected $userIds = null;
 
     protected $taskIds = null;
 
-    protected string $reportEndpoint = '';
+    protected string $endpoint = '';
 
     protected string $sortOrder = '';
-
-    private array $headers = [];
-
-    private string $workspaceId = '';
-
-    abstract public function get();
-
-    abstract protected function requestData();
 
     /**
      * Create a new resource instance.
@@ -38,27 +28,9 @@ abstract class ClockifyReport
      */
     public function __construct()
     {
+        parent::__construct();
         $this->dateRangeStart = now()->startOfYear();
         $this->dateRangeEnd = now()->endOfYear();
-        $this->headers = [
-            'X-Api-Key' => config('clockify.api_key'),
-        ];
-        $this->workspaceId = config('clockify.workspace_id');
-    }
-
-    public static function make()
-    {
-        return new static();
-    }
-
-    public function executeApiCall()
-    {
-        $endpoint = '/workspaces/'.$this->workspaceId.'/reports'.$this->reportEndpoint;
-
-        return Http::withHeaders($this->headers)->post(
-            self::REPORTS_ENDPOINT.$endpoint,
-            $this->requestData(),
-        );
     }
 
     public function users(array $userIds)

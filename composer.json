@@ -34,12 +34,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Sourceboat\\LaravelClockifyApi\\": "src"
+      "Ping\\LaravelClockifyApi\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Sourceboat\\LaravelClockifyApi\\Tests\\": "tests"
+      "Ping\\LaravelClockifyApi\\Tests\\": "tests"
     }
   },
   "scripts": {
@@ -57,7 +57,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Sourceboat\\LaravelClockifyApi\\LaravelClockifyApiServiceProvider"
+        "Ping\\LaravelClockifyApi\\LaravelClockifyApiServiceProvider"
       ]
     }
   }

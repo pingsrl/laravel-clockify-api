@@ -1,6 +1,6 @@
 <?php
 
-namespace Sourceboat\LaravelClockifyApi\Reports\Traits;
+namespace Ping\LaravelClockifyApi\Reports\Traits;
 
 use Carbon\Carbon;
 

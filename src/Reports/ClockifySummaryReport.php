@@ -1,10 +1,10 @@
 <?php
 
-namespace Sourceboat\LaravelClockifyApi\Reports;
+namespace Ping\LaravelClockifyApi\Reports;
 
 class ClockifySummaryReport extends ClockifyReport
 {
-    protected string $reportEndpoint = '/summary';
+    protected string $endpoint = '/reports/summary';
 
     private array $filterGroups = [
         'USER',
@@ -56,10 +56,5 @@ class ClockifySummaryReport extends ClockifyReport
         $this->filterGroups = $filterGroups;
 
         return $this;
-    }
-
-    public static function make()
-    {
-        return new static();
     }
 }

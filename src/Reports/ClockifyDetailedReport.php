@@ -1,10 +1,10 @@
 <?php
 
-namespace Sourceboat\LaravelClockifyApi\Reports;
+namespace Ping\LaravelClockifyApi\Reports;
 
 class ClockifyDetailedReport extends ClockifyReport
 {
-    protected string $reportEndpoint = '/detailed';
+    protected string $endpoint = '/reports/detailed';
 
     private int $page = 1;
 
@@ -63,10 +63,5 @@ class ClockifyDetailedReport extends ClockifyReport
                 ],
             ]),
         ]);
-    }
-
-    public static function make()
-    {
-        return new static();
     }
 }

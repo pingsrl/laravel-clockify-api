@@ -1,10 +1,10 @@
 <?php
 
-namespace Sourceboat\LaravelClockifyApi\Tests\Feature;
+namespace Ping\LaravelClockifyApi\Tests\Feature;
 
 use Illuminate\Support\Facades\Http;
-use Sourceboat\LaravelClockifyApi\Reports\ClockifySummaryReport;
-use Sourceboat\LaravelClockifyApi\Tests\TestCase;
+use Ping\LaravelClockifyApi\Reports\ClockifySummaryReport;
+use Ping\LaravelClockifyApi\Tests\TestCase;
 
 class SummaryReportTest extends TestCase
 {
