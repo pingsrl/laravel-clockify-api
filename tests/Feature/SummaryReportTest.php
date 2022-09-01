@@ -2,6 +2,7 @@
 
 namespace Ping\LaravelClockifyApi\Tests\Feature;
 
+use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
 use Ping\LaravelClockifyApi\Reports\ClockifySummaryReport;
 use Ping\LaravelClockifyApi\Tests\TestCase;
@@ -18,7 +19,9 @@ class SummaryReportTest extends TestCase
             ->users($this->userIds)
             ->get();
 
-        Http::assertSent(function ($request) {
+        Http::assertSent(function (Request $request) {
+            $this->assertEquals('https://reports.api.clockify.me/v1/workspaces/'.config('clockify.workspace_id').'/reports/summary', $request->url());
+
             return count($request['users']['ids']) === count($this->userIds);
         });
     }

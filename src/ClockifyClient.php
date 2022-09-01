@@ -9,7 +9,7 @@ abstract class ClockifyClient
 {
     use ConditionallyLoadsAttributes;
 
-    private const ENDPOINT = '';
+    protected const ENDPOINT = '';
 
     private array $headers = [];
 
@@ -32,7 +32,7 @@ abstract class ClockifyClient
           $endpoint = '/workspaces/'.$this->workspaceId.$this->endpoint;
 
           return Http::withHeaders($this->headers)->post(
-              self::ENDPOINT.$endpoint,
+              static::ENDPOINT.$endpoint,
               $this->requestData(),
           );
       }

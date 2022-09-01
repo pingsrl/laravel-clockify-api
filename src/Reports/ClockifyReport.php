@@ -11,7 +11,7 @@ abstract class ClockifyReport extends ClockifyClient
     use HasTags;
     use HasTimes;
 
-    private const ENDPOINT = 'https://reports.api.clockify.me/v1';
+    protected const ENDPOINT = 'https://reports.api.clockify.me/v1';
 
     protected $userIds = null;
 
