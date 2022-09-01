@@ -3,19 +3,20 @@
 namespace Ping\LaravelClockifyApi;
 
 use Illuminate\Http\Resources\ConditionallyLoadsAttributes;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 
 abstract class ClockifyClient
 {
     use ConditionallyLoadsAttributes;
 
+    protected string $method = 'get';
+
     protected const ENDPOINT = '';
 
     private array $headers = [];
 
     private string $workspaceId = '';
-
-    abstract public function get();
 
     abstract protected function requestData();
 
@@ -27,13 +28,19 @@ abstract class ClockifyClient
         $this->workspaceId = config('clockify.workspace_id');
     }
 
-      public function executeApiCall($method = 'post')
-      {
-          $endpoint = '/workspaces/'.$this->workspaceId.$this->endpoint;
+    public function get(): Collection
+    {
+        return collect(json_decode($this->executeApiCall()->body()));
+    }
 
-          return Http::withHeaders($this->headers)->$method(
-              static::ENDPOINT.$endpoint,
-              $this->requestData(),
-          );
-      }
+    public function executeApiCall()
+    {
+        $endpoint = '/workspaces/'.$this->workspaceId.$this->endpoint;
+        $method = $this->method ?? 'get';
+
+        return Http::withHeaders($this->headers)->$method(
+            static::ENDPOINT.$endpoint,
+            $this->requestData(),
+        );
+    }
 }

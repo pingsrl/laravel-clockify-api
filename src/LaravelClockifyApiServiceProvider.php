@@ -3,6 +3,8 @@
 namespace Ping\LaravelClockifyApi;
 
 use Illuminate\Support\ServiceProvider;
+use Ping\LaravelClockifyApi\API\ClockifyClients;
+use Ping\LaravelClockifyApi\API\ClockifyProjects;
 use Ping\LaravelClockifyApi\API\ClockifyUsers;
 use Ping\LaravelClockifyApi\Reports\ClockifyDetailedReport;
 use Ping\LaravelClockifyApi\Reports\ClockifySummaryReport;
@@ -26,7 +28,9 @@ class LaravelClockifyApiServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/clockify.php', 'clockify');
 
+        $this->app->singleton(ClockifyClients::class, fn () => new ClockifyClients());
         $this->app->singleton(ClockifyUsers::class, fn () => new ClockifyUsers());
+        $this->app->singleton(ClockifyProjects::class, fn () => new ClockifyProjects());
         $this->app->singleton(ClockifyDetailedReport::class, fn () => new ClockifyDetailedReport());
         $this->app->singleton(ClockifySummaryReport::class, fn () => new ClockifySummaryReport());
     }

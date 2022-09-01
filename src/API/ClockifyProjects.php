@@ -2,8 +2,6 @@
 
 namespace Ping\LaravelClockifyApi\API;
 
-use Illuminate\Support\Collection;
-
 class ClockifyProjects extends ClockifyAPI
 {
     protected string $endpoint = '/projects';
@@ -17,11 +15,6 @@ class ClockifyProjects extends ClockifyAPI
     private string $userStatus = 'ACTIVE';
 
     private array $users = [];
-
-    public function get(): Collection
-    {
-        return collect(json_decode($this->executeApiCall('get')->body()));
-    }
 
     protected function requestData()
     {
