@@ -21,6 +21,7 @@ class SummaryReportTest extends TestCase
 
         Http::assertSent(function (Request $request) {
             $this->assertEquals('https://reports.api.clockify.me/v1/workspaces/'.config('clockify.workspace_id').'/reports/summary', $request->url());
+            $this->assertEquals('POST', $request->method());
 
             return count($request['users']['ids']) === count($this->userIds);
         });

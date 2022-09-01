@@ -17,9 +17,10 @@ class UserTest extends TestCase
             ->get();
 
         Http::assertSent(function (Request $request) {
-            $this->assertEquals('https://api.clockify.me/api/v1/workspaces/'.config('clockify.workspace_id').'/users', $request->url());
+            $this->assertStringContainsString('https://api.clockify.me/api/v1/workspaces/'.config('clockify.workspace_id').'/users', $request->url());
             $this->assertEquals('NAME', $request['sortColumn']);
             $this->assertEquals('ACTIVE', $request['status']);
+            $this->assertEquals('GET', $request->method());
 
             return true;
         });

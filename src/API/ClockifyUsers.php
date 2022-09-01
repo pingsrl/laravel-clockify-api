@@ -14,7 +14,7 @@ class ClockifyUsers extends ClockifyAPI
 
     public function get()
     {
-        return json_decode($this->executeApiCall()->body());
+        return json_decode($this->executeApiCall('get')->body());
     }
 
     protected function requestData()

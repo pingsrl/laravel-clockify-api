@@ -27,11 +27,11 @@ abstract class ClockifyClient
         $this->workspaceId = config('clockify.workspace_id');
     }
 
-      public function executeApiCall()
+      public function executeApiCall($method = 'post')
       {
           $endpoint = '/workspaces/'.$this->workspaceId.$this->endpoint;
 
-          return Http::withHeaders($this->headers)->post(
+          return Http::withHeaders($this->headers)->$method(
               static::ENDPOINT.$endpoint,
               $this->requestData(),
           );
