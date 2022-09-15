@@ -2,6 +2,7 @@
 
 namespace Ping\LaravelClockifyApi;
 
+use Illuminate\Http\Client\Response;
 use Illuminate\Http\Resources\ConditionallyLoadsAttributes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
@@ -16,7 +17,7 @@ abstract class ClockifyClient
 
     private array $headers = [];
 
-    private string $workspaceId = '';
+    protected string $workspaceId = '';
 
     abstract protected function requestData();
 
@@ -30,17 +31,28 @@ abstract class ClockifyClient
 
     public function get(): Collection
     {
-        return collect(json_decode($this->executeApiCall()->body()));
+        return $this->parseResponse($this->executeApiCall());
     }
 
-    private function executeApiCall()
+    protected function parseResponse(Response $response)
     {
-        $endpoint = '/workspaces/'.$this->workspaceId.$this->endpoint;
+        return collect(json_decode($response->body()));
+    }
+
+    protected function getEndpoint()
+    {
+        return '/workspaces/'.$this->workspaceId.$this->endpoint;
+    }
+
+    protected function executeApiCall(string $resource_endpoint = '', array $data = null)
+    {
+        $endpoint = $this->getEndpoint().$resource_endpoint;
         $method = $this->method ?? 'get';
+        $data = $data ?: $this->requestData();
 
         return Http::withHeaders($this->headers)->$method(
             static::ENDPOINT.$endpoint,
-            $this->requestData(),
+            $data,
         );
     }
 }
