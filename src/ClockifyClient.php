@@ -6,6 +6,7 @@ use Illuminate\Http\Client\Response;
 use Illuminate\Http\Resources\ConditionallyLoadsAttributes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
+use stdClass;
 
 abstract class ClockifyClient
 {
@@ -34,7 +35,7 @@ abstract class ClockifyClient
         return $this->parseCollectionResponse($this->executeApiCall());
     }
 
-    protected function parseResponse(Response $response): ?array
+    protected function parseResponse(Response $response): null|array|stdClass
     {
         return json_decode($response->body());
     }

@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 use Ping\LaravelClockifyApi\ClockifyClient;
 use Ping\LaravelClockifyApi\Payloads\PayloadContract;
 use Ping\LaravelClockifyApi\Traits\HasPages;
+use stdClass;
 
 abstract class ClockifyAPI extends ClockifyClient
 {
@@ -22,7 +23,7 @@ abstract class ClockifyAPI extends ClockifyClient
         return $this->parseCollectionResponse($response);
     }
 
-    public function add(PayloadContract $payload): ?array
+    public function add(PayloadContract $payload): null|array|stdClass
     {
         $this->method = 'post';
 
@@ -33,7 +34,7 @@ abstract class ClockifyAPI extends ClockifyClient
         return $this->parseResponse($response);
     }
 
-    public function update(PayloadContract $payload): ?array
+    public function update(PayloadContract $payload): null|array|stdClass
     {
         $this->method = 'put';
 
@@ -44,7 +45,7 @@ abstract class ClockifyAPI extends ClockifyClient
         return $this->parseResponse($response);
     }
 
-    public function delete(PayloadContract $payload): ?array
+    public function delete(PayloadContract $payload): null|array|stdClass
     {
         $this->method = 'delete';
 
