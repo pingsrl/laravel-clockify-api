@@ -46,6 +46,39 @@ class TasksTest extends TestCase
         });
     }
 
+    public function testCanAddMultipleTask(): void
+    {
+        Http::fake();
+
+        $client = app(ClockifyTasks::class)->forProjectId('xxxx');
+
+        $client->add(
+            ClockifyTask::make()->name('Task X')
+        );
+
+        Http::assertSent(function (Request $request) {
+            $this->assertStringContainsString('https://api.clockify.me/api/v1/workspaces/'.config('clockify.workspace_id').'/projects/xxxx/tasks', $request->url());
+            $this->assertEquals('Task X', $request['name']);
+            $this->assertEquals('POST', $request->method());
+
+            return true;
+        });
+
+        Http::fake();
+
+        $client->add(
+            ClockifyTask::make()->name('Task Y')
+        );
+
+        Http::assertSent(function (Request $request) {
+            $this->assertStringContainsString('https://api.clockify.me/api/v1/workspaces/'.config('clockify.workspace_id').'/projects/xxxx/tasks', $request->url());
+            $this->assertEquals('Task Y', $request['name']);
+            $this->assertEquals('POST', $request->method());
+
+            return true;
+        });
+    }
+
     public function testCanUpdateTask(): void
     {
         Http::fake();
