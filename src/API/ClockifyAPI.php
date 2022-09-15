@@ -19,10 +19,10 @@ abstract class ClockifyAPI extends ClockifyClient
 
         $response = $this->executeApiCall();
 
-        return $this->parseResponse($response);
+        return $this->parseCollectionResponse($response);
     }
 
-    public function add(PayloadContract $payload): Collection
+    public function add(PayloadContract $payload): ?array
     {
         $this->method = 'post';
 
@@ -33,7 +33,7 @@ abstract class ClockifyAPI extends ClockifyClient
         return $this->parseResponse($response);
     }
 
-    public function update(PayloadContract $payload): Collection
+    public function update(PayloadContract $payload): ?array
     {
         $this->method = 'put';
 
@@ -44,7 +44,7 @@ abstract class ClockifyAPI extends ClockifyClient
         return $this->parseResponse($response);
     }
 
-    public function delete(PayloadContract $payload): Collection
+    public function delete(PayloadContract $payload): ?array
     {
         $this->method = 'delete';
 

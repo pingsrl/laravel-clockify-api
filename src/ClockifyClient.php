@@ -31,12 +31,17 @@ abstract class ClockifyClient
 
     public function get(): Collection
     {
-        return $this->parseResponse($this->executeApiCall());
+        return $this->parseCollectionResponse($this->executeApiCall());
     }
 
-    protected function parseResponse(Response $response)
+    protected function parseResponse(Response $response): ?array
     {
-        return collect(json_decode($response->body()));
+        return json_decode($response->body());
+    }
+
+    protected function parseCollectionResponse(Response $response): Collection
+    {
+        return collect($this->parseResponse($response));
     }
 
     protected function getEndpoint()
