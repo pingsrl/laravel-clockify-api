@@ -12,7 +12,7 @@ Official clockify API: https://clockify.me/developers-api
 
 1. You can install the package via composer:
 
-   `composer require sourceboat/laravel-clockify-api`
+   `composer require pingsrl/laravel-clockify-api`
 
    Optional: The service provider will automatically get registered. Or you may manually add the service provider in your config/app.php file:
 
